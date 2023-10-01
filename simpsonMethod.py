@@ -1,5 +1,20 @@
 import math
-def simpson_integration(f, a, b, min_partitions, max_partitions, target_error): # ф - функция, а б - пределы, мин макс партишн - макс и мин число разбиений, таргет еррор -
+user_function = input("Введите функцию, если она сложная используйте: math.: ")
+a = float(input("Введите нижний предел: "))
+b = float(input("Введите верхний предел: "))
+min_partitions = int(input("Введите минимальное число разбиейний: "))
+max_partitions = int(input("Введите максимальное число разбиейний: "))
+target_error = float(input("Введите погрешность: "))
+
+def f(x):
+    try:
+        result = eval(user_function)
+        return result
+    except (SyntaxError, NameError) as e:
+        print("Произошла ошибка:", e)
+
+
+def simpson_integration(): # ф - функция, а б - пределы, мин макс партишн - макс и мин число разбиений, таргет еррор -
     partitions = min_partitions # кол-во разбиейний на начальном этапе = мин. кол-ву разбиений
     prev_result = 0 #пред результ
     curr_result = 0 #текущ результ
@@ -24,11 +39,11 @@ def simpson_integration(f, a, b, min_partitions, max_partitions, target_error): 
         prev_result = curr_result # запоминаем текущий результат в предыдущий
         partitions *= 2 # увеличиваем кол-во разбиений
 
-    return partitions // 2, error
+    print(partitions // 2, error)
     #возвращаем кол-во разбиений деленное на 2, так как в конце цикла делается умножение на 2 для след. шага,
     #но так как мы нашли что хотели, то дальше не пойдем и нам нужно вернуть кол-во разбиений на место, то есть поделить на 2
     #также возвращаем погрешность по условию задачи
 
-def f(x): # функция наша, можно было использовать eval()
-    return math.sin(x)
-print(simpson_integration(f,0,math.pi,2,1024,1e-6))
+
+simpson_integration()
+#print(simpson_integration(f,0,math.pi,2,1024,1e-6))
